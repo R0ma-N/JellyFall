@@ -16,6 +16,7 @@ public class Follow : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, time);
-        transform.rotation = target.rotation;
+        transform.LookAt(target);
+        //transform.rotation = target.rotation;
     }
 }
