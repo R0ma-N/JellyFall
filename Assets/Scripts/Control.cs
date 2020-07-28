@@ -59,7 +59,8 @@ public class Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(_parts, transform.position, Quaternion.identity);
-           
+            _scaleObject.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            PartsCount = 0;
         }
     }
 

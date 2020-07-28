@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Deform;
 
 public class boom : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class boom : MonoBehaviour
 
             if (rb != null)
                 rb.AddExplosionForce(power, explosionPos, radius, 0F);
+        }
+
+        MagnetDeformer[] magnets = GameObject.FindObjectsOfType<MagnetDeformer>();
+        Transform target = FindObjectOfType<Control>().transform;
+
+        foreach (var item in magnets)
+        {
+            item.Center = target;
         }
 
         Destroy(this.gameObject);
