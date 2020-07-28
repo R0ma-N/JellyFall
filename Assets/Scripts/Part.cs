@@ -14,12 +14,12 @@ public class Part : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(_rotation);
+        //transform.Rotate(_rotation);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        control.MeetAPart();
-        Destroy(gameObject, 1f);
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    control.MeetAPart();
+    //    Destroy(gameObject, 1f);
+    //}
 }

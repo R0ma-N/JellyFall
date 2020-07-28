@@ -1,22 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Deform;
 
 public class Follow : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float time;
+    [SerializeField] SquashAndStretchDeformer deformer;
 
     void Start()
     {
-        
+        deformer = GameObject.FindObjectOfType<SquashAndStretchDeformer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, time);
         transform.LookAt(target);
-        //transform.rotation = target.rotation;
+        
+        if (Vector3.Distance(target.position, transform.position) <= 0.2)
+        {
+            print("OK");
+            deformer.Factor = 0;
+        }
+        else
+        {
+            deformer.Factor = 0.2f;
+        }
     }
 }
