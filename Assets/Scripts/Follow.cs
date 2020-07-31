@@ -21,7 +21,6 @@ public class Follow : MonoBehaviour
         
         if (Vector3.Distance(target.position, transform.position) <= 0.2)
         {
-            print("OK");
             deformer.Factor = 0;
         }
         else

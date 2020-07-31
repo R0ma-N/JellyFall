@@ -5,14 +5,16 @@ using UnityEngine;
 public class Part : MonoBehaviour
 {
     [SerializeField] Vector3 _rotation;
-    Collider collider;
+    private Collider _collider;
+    private Animator _animator;
     float timer, time;
 
     private void Start()
     {
         time = 0;
         timer = 1;
-        collider = GetComponent<Collider>();
+        _collider = GetComponent<Collider>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -22,15 +24,8 @@ public class Part : MonoBehaviour
             time += Time.deltaTime;
         }
 
-        print(time);
         transform.Rotate(_rotation);
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    control.MeetAPart();
-    //    Destroy(gameObject, 1f);
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -38,11 +33,15 @@ public class Part : MonoBehaviour
         {
             if (collision.collider.TryGetComponent<Control>(out Control target))
             {
-                collider.enabled = false;
+                _collider.enabled = false;
                 target.MeetAPart();
                 Destroy(gameObject, 0.3f);
             }
         }
-        
+
+        if (collision.collider.CompareTag("Wall"))
+        {
+            _animator.SetTrigger("Blow");
+        }
     }
 }
