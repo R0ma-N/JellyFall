@@ -18,9 +18,4 @@ public class Donut : MonoBehaviour
         transform.Translate(Vector3.up * Time.deltaTime * speed);
         _object.transform.Rotate(rotation);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
 }
